@@ -42,7 +42,37 @@ app.post('/produto', (req,res) => {
         });
 });
 
-app.pat
+// ATUALIZAR PRODUTO
+app.put('/produto/:id', (req,res) => {
+    const { id } = req.params;
+    const { quantidade } = req.body;
+
+    db.query(`UPDATE produtos SET quantidade = ? WHERE id = ?`,
+        [quantidade, id],
+        (err) => {
+            if (err) res.status(500).send(err);
+            res.send('Produto atualizado com sucesso!');
+        });
+});
+
+// LISTAR LOGS
+app.get('/logs', (req, res) => {
+    const sql = `
+        SELECT 
+            id, 
+            id_produto,
+            nome_produto,
+            quantidade_anterior, 
+            quantidade_atual,
+            DATE_FORMAT(data_modificacao, '%d/%m/%Y %H:%i:%s') AS data_modificacao
+        FROM log_estoque
+        ORDER BY data_modificacao DESC
+    `;
+    db.query(sql, (err, results) => {
+        if (err) return res.status(500).res.send(err);
+        res.json(results);
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
