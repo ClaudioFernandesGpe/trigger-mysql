@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trigger MySql</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Rota Principal</h1>
+    <div class="container">
+        <h1>Gerenciamento de Estoque</h1>
+
+        <form id="formInsert">
+            <input type="text" name="nome" id="nomeInsert" placeholder="Nome do produto" required>
+            <input type="number" name="quantidade" id="quantidadeInsert" placeholder="Quantidade" required>
+            <button type="submit">Inserir Produto</button>
+        </form>
+
+        <form id="formUpdate">
+            <input type="number" name="id" id="idUpdate" placeholder="Nome do produto" required>
+            <input type="number" name="quantidade" id="quantidadeUpdate" placeholder="Nova Quantidade" required>
+            <button type="submit">Inserir Produto</button>
+        </form>
+
+        <button class="btn-logs" onclick="showLogs()">Ver Logs</button>
+
+        <div id="logs"></div>
+    </div>
+
+    <script src="/js/script.js"></script>
 </body>
 </html>
